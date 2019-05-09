@@ -5,7 +5,7 @@ import pandas as pd
 # loading the Table 4 information to memory
 
 def get_prs(sample_number):
-    df = pd.read_csv("../data/77SNP_Breast_Cancer_Table4.csv")
+    df = pd.read_csv("./77SNP_Breast_Cancer_Table4.csv")
     df.set_index("SNP", inplace=True)
     # print(df.head())
 

@@ -7,23 +7,19 @@ import pandas as pd
 import time
 from flask import Flask, Response, stream_with_context
 
-#
-def callback(statement):
-    print("here")
-    # yield statement
-    yield from deeper()
-    
-def deeper():
-    yield "Deeper"
-
 app = Flask(__name__)
 
 @app.route('/')
+def index():
+    return "Hello World!"
+
+
+@app.route('/xml')
 def main():
     return '''<div>Start</div>
     <script>
         var xhr = new XMLHttpRequest();
-        xhr.open('GET', '/stream', true);
+        xhr.open('GET', '/stream/HG00099', true);
         xhr.onreadystatechange = function(e) {
             var div = document.createElement('div');
             div.innerHTML = '' + this.readyState + ':' + this.responseText;
@@ -46,4 +42,5 @@ def streamed_response(sample_name):
 def test():
     return "HELLO"
 
-app.run(debug=True, port=5000, host='0.0.0.0')
+if __name__ == "__main__":
+    app.run(host='0.0.0.0')
